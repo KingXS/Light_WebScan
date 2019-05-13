@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Info_basic</class>
+ <widget class="QWidget" name="Info_basic">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>658</width>
+    <height>548</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Info-basic</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>C:/Users/23584/Pictures/lovewallpaper/PK2.png</normaloff>C:/Users/23584/Pictures/lovewallpaper/PK2.png</iconset>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>0</y>
+     <width>231</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 22pt &quot;楷体&quot;;</string>
+   </property>
+   <property name="text">
+    <string>网站基本信息</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>110</y>
+     <width>72</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>网站URL：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>100</y>
+     <width>321</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>100</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>开始</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>170</y>
+     <width>391</width>
+     <height>321</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

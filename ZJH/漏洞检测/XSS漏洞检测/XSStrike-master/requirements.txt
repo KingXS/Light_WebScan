@@ -1,0 +1,4 @@
+selenium
+tld
+fuzzywuzzy
+requests

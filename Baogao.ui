@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Baogao</class>
+ <widget class="QWidget" name="Baogao">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>464</width>
+    <height>511</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Baogao</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>C:/Users/23584/Pictures/lovewallpaper/PK2.png</normaloff>C:/Users/23584/Pictures/lovewallpaper/PK2.png</iconset>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>20</y>
+     <width>151</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 22pt &quot;楷体&quot;;</string>
+   </property>
+   <property name="text">
+    <string>报告输出</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>160</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>输出报告</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>250</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>查看报告</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

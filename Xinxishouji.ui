@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Xinxishouji</class>
+ <widget class="QWidget" name="Xinxishouji">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>461</width>
+    <height>473</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Xinxishouji</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>C:/Users/23584/Pictures/lovewallpaper/PK2.png</normaloff>C:/Users/23584/Pictures/lovewallpaper/PK2.png</iconset>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>10</y>
+     <width>151</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 22pt &quot;楷体&quot;;</string>
+   </property>
+   <property name="text">
+    <string>信息收集</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>140</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>网站基本信息</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>220</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>子域名</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>300</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>端口扫描与服务识别</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

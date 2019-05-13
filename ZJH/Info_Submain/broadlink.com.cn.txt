@@ -1,0 +1,7 @@
+www.broadlink.com.cn          	115.29.202.183
+mobile.broadlink.com.cn       	112.124.42.227
+mail.broadlink.com.cn         	103.129.252.36
+dns.broadlink.com.cn          	10.0.0.1
+download.broadlink.com.cn     	101.124.6.180
+us.broadlink.com.cn           	54.81.80.237
+6.broadlink.com.cn            	42.159.227.78
