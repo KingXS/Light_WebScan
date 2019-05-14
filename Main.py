@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
+from PyQt5.QtWebEngineWidgets import *
+from PyQt5.QtCore import QTimer
 import sys
 import os
+import subprocess
 #引用相关的界面模块
 from Zhujiemian import  Ui_Zhujiemian
 
@@ -125,18 +128,19 @@ class new_Info_ports(QtWidgets.QWidget, Ui_Info_ports):
 
 # 开始端口扫描
     def Start_Info_ports(self):
+        #更改程序工作目录
+        os.chdir('E:/BYSJ/ZJH/Info_Ports/')
         # 获取网站URL
         url = self.lineEdit.text()
         if (self.radioButton.isChecked()):
             type = 'p'
         elif (self.radioButton_2.isChecked()):
             type = 'f'
-        Mingling3 = "python E:/BYSJ/ZJH/Info_Ports/PortScan.py -u "+url+" -t "+type
+        Mingling3 = "python PortScan.py -u "+url+" -t "+type
         Mingling3 = str(Mingling3)
-        print(Mingling3)
-        output = os.system(Mingling3)
-
-        self.textEdit.setText(output)
+        output = subprocess.check_output(Mingling3)
+        print(output.decode("utf-8"))
+        self.textEdit.setText(output.decode("utf-8"))
 
 
 ########################################################################################################################
@@ -164,16 +168,76 @@ class new_LD_cms(QtWidgets.QWidget, Ui_LD_cms):
     def __init__(self):
         super(new_LD_cms,self).__init__()
         self.setupUi(self)
+        self.comboBox.addItem("请选择cms类型")
+        self.comboBox.addItem("Ecshop")
+        self.comboBox.addItem("ASPCMS")
+        self.pushButton.clicked.connect(self.Start_check)
+
+
+    def Start_check(self):
+        os.chdir('E:\BYSJ\ZJH\Vul_det\CMS_Vul')
+        x = str(self.comboBox.currentIndex())
+        url = self.lineEdit.text()
+        if x=='1':
+            Mingling = "python ECSHOP.py -u "+url
+        elif x=='2':
+            Mingling = "python ASPCMS.py -u "+url
+        print(Mingling)
+        output = subprocess.check_output(Mingling)
+        self.textBrowser.setText(output.decode("utf-8"))
+
 #SQL注入
 class new_LD_SQL(QtWidgets.QWidget, Ui_LD_SQL):
     def __init__(self):
         super(new_LD_SQL,self).__init__()
         self.setupUi(self)
+        self.pushButton.clicked.connect(self.LD_SQL)
+
+
+    def LD_SQL(self):
+        #f_write = open("result.txt",'a')
+        #f_read = open("result.txt", 'r')
+        os.chdir('E:\BYSJ\ZJH\Vul_det\SQL_Vul')
+        url = self.lineEdit.text()
+        Mingling = "python2 sqlmap.py -u "+url+"--risk 3 --level 3 --dbs"
+
+        #实时显示程序的运行结果
+        popen = subprocess.Popen(Mingling,  # 需要执行的文件路径
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE,
+                                 bufsize=1)
+#http://www.symotor.com/news.php?id=31
+#http://semitronix.com/cn/search.php?keyworde=5
+        # 重定向标准输出
+        while popen.poll() is None:  # None表示正在执行中
+            r = popen.stdout.readline().decode("utf-8")
+            self.textBrowser.append(r.strip('\n'))
+            QApplication.processEvents()
+            print(r)  # 可修改输出方式，比如控制台、文件等
+
+        # 重定向错误输出
+        if popen.poll() != 0:  # 不为0表示执行错误
+            err = popen.stderr.readline().decode("utf-8")
+            self.textBrowser.setText(err)
+            #print(err)  # 可修改输出方式，比如控制台、文件等
+
+
+
 #XSS检测
 class new_LD_XSS(QtWidgets.QWidget, Ui_LD_XSS):
     def __init__(self):
         super(new_LD_XSS,self).__init__()
         self.setupUi(self)
+        self.pushButton.clicked.connect(self.LD_XSS)
+
+    def LD_XSS(self):
+        os.chdir('E:\BYSJ\ZJH\Vul_det\SQL_Vul')
+        url = self.lineEdit.text()
+        Mingling = "python xsstrike.py -u " + url
+        
+
+
+
 
 
 

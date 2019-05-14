@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'LD-XSS.ui'
+# Form implementation generated from reading ui file 'LD_XSS.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_LD_XSS(object):
     def setupUi(self, LD_XSS):
         LD_XSS.setObjectName("LD_XSS")
-        LD_XSS.resize(757, 431)
+        LD_XSS.resize(757, 603)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("C:/Users/23584/Pictures/lovewallpaper/PK2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         LD_XSS.setWindowIcon(icon)
@@ -28,9 +28,9 @@ class Ui_LD_XSS(object):
         self.pushButton = QtWidgets.QPushButton(LD_XSS)
         self.pushButton.setGeometry(QtCore.QRect(620, 90, 93, 28))
         self.pushButton.setObjectName("pushButton")
-        self.textEdit = QtWidgets.QTextEdit(LD_XSS)
-        self.textEdit.setGeometry(QtCore.QRect(130, 160, 511, 191))
-        self.textEdit.setObjectName("textEdit")
+        self.textBrowser = QtWidgets.QTextBrowser(LD_XSS)
+        self.textBrowser.setGeometry(QtCore.QRect(20, 140, 721, 451))
+        self.textBrowser.setObjectName("textBrowser")
 
         self.retranslateUi(LD_XSS)
         QtCore.QMetaObject.connectSlotsByName(LD_XSS)

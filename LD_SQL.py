@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'LD-SQL.ui'
+# Form implementation generated from reading ui file 'LD_SQL.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -28,9 +28,9 @@ class Ui_LD_SQL(object):
         self.pushButton = QtWidgets.QPushButton(LD_SQL)
         self.pushButton.setGeometry(QtCore.QRect(620, 110, 93, 28))
         self.pushButton.setObjectName("pushButton")
-        self.textEdit = QtWidgets.QTextEdit(LD_SQL)
-        self.textEdit.setGeometry(QtCore.QRect(130, 190, 541, 241))
-        self.textEdit.setObjectName("textEdit")
+        self.textBrowser = QtWidgets.QTextBrowser(LD_SQL)
+        self.textBrowser.setGeometry(QtCore.QRect(30, 170, 731, 301))
+        self.textBrowser.setObjectName("textBrowser")
 
         self.retranslateUi(LD_SQL)
         QtCore.QMetaObject.connectSlotsByName(LD_SQL)

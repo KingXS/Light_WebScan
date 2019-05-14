@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>757</width>
-    <height>431</height>
+    <height>603</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -69,13 +69,13 @@
     <string>开始</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>160</y>
-     <width>511</width>
-     <height>191</height>
+     <x>20</x>
+     <y>140</y>
+     <width>721</width>
+     <height>451</height>
     </rect>
    </property>
   </widget>

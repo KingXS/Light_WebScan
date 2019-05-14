@@ -1,0 +1,6 @@
+*.pyc
+xsscrapy-vulns*
+*.txt
+*.swp
+*.swo
+*.png
